@@ -12,10 +12,7 @@ function App() {
     <>
       <CommandMenu />
 
-      <main
-        role="main"
-        className="container space-y-8 pt-12 pb-20 md:max-w-3xl md:space-y-12 md:pt-24"
-      >
+      <main className="container space-y-8 pt-12 pb-20 md:max-w-3xl md:space-y-12 md:pt-24">
         <Hero />
         <Projects />
         <Experience />

@@ -1,86 +1,144 @@
-import { useEffect, useState } from 'react';
-import { createPortal } from 'react-dom';
+import {
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  CommandShortcut,
+} from '@/components/ui/command';
+import { CONTACT_DETAILS } from '@/constants/contactDetails';
+import { PROJECTS } from '@/constants/projects';
+import { IconArrowUpRight, IconContrast, IconCopy, IconHash } from '@tabler/icons-react';
+import { useCallback, useEffect, useState } from 'react';
+
+const SECTIONS = [
+  { id: 'projects', label: 'Projects' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'skills', label: 'Tools & Stack' },
+];
+
+const EMAIL = 'rpunia229@gmail.com';
 
 export default function CommandMenu() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Ignore if typing in an input
-      if (
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        setOpen((prev) => !prev);
+        return;
+      }
+
+      // '?' opens the menu, but not while typing in an input
+      const isTyping =
         e.target instanceof HTMLInputElement ||
         e.target instanceof HTMLTextAreaElement ||
-        e.target instanceof HTMLSelectElement
-      ) {
-        return;
-      }
+        e.target instanceof HTMLSelectElement;
 
-      if (e.key === '?' || ((e.ctrlKey || e.metaKey) && e.key === 'k')) {
+      if (e.key === '?' && !isTyping) {
         e.preventDefault();
-        setIsOpen((prev) => !prev);
-        return;
-      }
-
-      if (!isOpen) return;
-
-      switch (e.key) {
-        case 'Escape':
-          setIsOpen(false);
-          break;
-        case 't':
-          document.getElementById('theme-toggle')?.click();
-          break;
-        case 'g':
-          window.open('https://github.com/rahulpoonia29', '_blank');
-          break;
-        case 'l':
-          window.open('https://www.linkedin.com/in/rahulpoonia', '_blank');
-          break;
-        case 'i':
-          window.open('https://www.instagram.com/rahulpoonia029', '_blank');
-          break;
-        case 'e':
-          window.open('mailto:rahulpoonia229@gmail.com', '_self');
-          break;
+        setOpen(true);
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen]);
+  }, []);
 
-  if (!isOpen) return null;
+  const run = useCallback((action: () => void) => {
+    setOpen(false);
+    action();
+  }, []);
 
-  return createPortal(
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
-      <div className="border-border bg-card animate-in fade-in zoom-in-95 w-full max-w-md overflow-hidden rounded-lg border p-0 shadow-2xl duration-200">
-        <div className="border-border bg-muted/50 border-b px-4 py-3">
-          <h2 className="text-foreground flex items-center gap-2 font-mono text-sm font-bold">
-            <span className="text-primary">&gt;</span> Command Menu
-          </h2>
-        </div>
-        <div className="p-2">
-          <div className="grid gap-1">
-            <CommandItem keyKey="t" label="Toggle Theme" />
-            <CommandItem keyKey="g" label="Visit GitHub" />
-            <CommandItem keyKey="l" label="Visit LinkedIn" />
-            <CommandItem keyKey="i" label="Visit Instagram" />
-            <CommandItem keyKey="e" label="Send Email" />
-            <CommandItem keyKey="Ctrl+K" label="Toggle Menu" />
-            <CommandItem keyKey="Esc" label="Close" />
-          </div>
-        </div>
-      </div>
-    </div>,
-    document.body,
-  );
-}
-
-function CommandItem({ keyKey, label }: { keyKey: string; label: string }) {
   return (
-    <div className="text-muted-foreground hover:bg-muted/50 hover:text-foreground flex items-center justify-between rounded px-3 py-2 text-sm transition-colors">
-      <span>{label}</span>
-      <kbd className="kbd">{keyKey}</kbd>
-    </div>
+    <CommandDialog
+      open={open}
+      onOpenChange={setOpen}
+      title="Command Menu"
+      description="Search for a section, project or action"
+      className="border-border rounded-none font-mono"
+    >
+      <CommandInput placeholder="Type a command or search..." />
+      <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+
+        <CommandGroup heading="Navigate">
+          {SECTIONS.map((section) => (
+            <CommandItem
+              key={section.id}
+              onSelect={() =>
+                run(() =>
+                  document.getElementById(section.id)?.scrollIntoView({ behavior: 'smooth' }),
+                )
+              }
+            >
+              <IconHash />
+              {section.label}
+            </CommandItem>
+          ))}
+        </CommandGroup>
+
+        <CommandSeparator />
+
+        <CommandGroup heading="Actions">
+          <CommandItem onSelect={() => run(() => document.getElementById('theme-toggle')?.click())}>
+            <IconContrast />
+            Toggle theme
+            <CommandShortcut>T</CommandShortcut>
+          </CommandItem>
+          <CommandItem onSelect={() => run(() => void navigator.clipboard.writeText(EMAIL))}>
+            <IconCopy />
+            Copy email address
+          </CommandItem>
+        </CommandGroup>
+
+        <CommandSeparator />
+
+        <CommandGroup heading="Connect">
+          {CONTACT_DETAILS.map((contact) => (
+            <CommandItem
+              key={contact.link}
+              onSelect={() =>
+                run(() =>
+                  window.open(
+                    contact.link,
+                    contact.link.startsWith('mailto:') ? '_self' : '_blank',
+                    'noopener,noreferrer',
+                  ),
+                )
+              }
+            >
+              <contact.icon />
+              {contact.text}
+            </CommandItem>
+          ))}
+        </CommandGroup>
+
+        <CommandSeparator />
+
+        <CommandGroup heading="Projects">
+          {PROJECTS.filter((p) => p.links?.live || p.links?.code).map((project) => {
+            const href = project.links?.live ?? project.links?.code;
+            return (
+              <CommandItem
+                key={project.id}
+                onSelect={() => run(() => window.open(href, '_blank', 'noopener,noreferrer'))}
+              >
+                <IconArrowUpRight />
+                {project.name}
+                {project.tagline && (
+                  <span className="text-muted-foreground truncate text-xs">
+                    · {project.tagline}
+                  </span>
+                )}
+              </CommandItem>
+            );
+          })}
+        </CommandGroup>
+      </CommandList>
+    </CommandDialog>
   );
 }

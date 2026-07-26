@@ -1,44 +1,49 @@
 export interface ExperienceItem {
   title: string;
   company: string;
-  duration: string;
+  duration?: string;
   description: string;
 }
 
 export const EXPERIENCE: ExperienceItem[] = [
   {
+    title: 'Backend Developer',
+    company: 'Brikby',
+    description:
+      "Building the land-records agent behind Brikby's AI property due-diligence platform: agentic workers that pull encumbrance certificates, market values and property-tax records from Indian government portals and turn them into clean, typed APIs. Also shipped core backend for the main brikby.com platform, all on Cloudflare Workers with Hono, D1, R2, KV and Durable Objects.",
+  },
+  {
     title: 'Full‑Stack Developer',
     company: 'Neosophical Labs',
-    duration: 'May 2025 – Present',
     description:
-      'Building AI automation and systems engineering solutions at an AI-first company. Developing conversational agents, internal copilots, and end-to-end automation infrastructure for enterprise systems including CRM, lead routing, payments, and analytics pipelines.',
+      'Building Ahoum, a self-hosted virtual-office platform: a WorkAdventure world with LiveKit audio/video, Authentik SSO and Plane task management, deployed on Coolify behind Cloudflare. Also built office-scribe, a bot that turns meeting audio into Plane issues through Groq Whisper and an LLM pipeline.',
   },
   {
     title: 'Backend Developer',
     company: 'OpenSoft (GC), IIT Kharagpur',
     duration: 'Mar 2025',
     description:
-      'Engineered a FastAPI backend powered by LangChain and Gemini to analyze conversations, compute vulnerability scores, and generate HR‑ready well‑being insights.',
+      'Built a FastAPI backend on LangChain and Gemini that reads conversations, scores vulnerability, and turns them into well‑being reports for HR.',
   },
   {
     title: 'Full‑Stack Developer',
     company: 'Jobfynder',
     duration: 'Nov 2024 – Feb 2025',
     description:
-      'Developed and shipped a job board platform featuring real‑time chat and applicant tracking. Implemented JWT role-based auth, an SES/SQS email pipeline, and automated CI/CD deployments to AWS EC2.',
+      'Shipped a job board with real‑time chat and applicant tracking. Built JWT role-based auth, an SES/SQS email pipeline, and CI/CD deploys to AWS EC2.',
   },
   {
     title: 'Python Backend Developer',
     company: 'Inter IIT Tech Meet, IIT Kharagpur',
     duration: 'Dec 2024',
     description:
-      'Built a Quart backend to control physical drones via MAVSDK. Exposed REST APIs and utilized Socket.IO to stream real-time telemetry data to a React dashboard.',
+      'Built a Quart backend that flies physical drones over MAVSDK, with REST APIs and Socket.IO streaming live telemetry to a React dashboard.',
   },
   {
     title: 'Backend Developer (Open Source)',
     company: 'GirlScript Summer Of Code',
     duration: 'Mar 2024',
     description:
-      'Contributed to the core Express.js service powering the GSSoC leaderboard. Implemented contributor verification, label checking, and aggressive caching to minimize GitHub API rate limits.',
+      'Worked on the Express.js service behind the GSSoC leaderboard: contributor verification, label checks, and caching to stay under GitHub API rate limits.',
   },
 ];

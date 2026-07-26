@@ -13,22 +13,22 @@ export const CONTACT_DETAILS: {
 }[] = [
   {
     icon: IconMail,
-    link: 'mailto:rahulpoonia229@gmail.com',
-    text: 'rahulpoonia229@gmail.com',
+    link: 'mailto:rpunia229@gmail.com',
+    text: 'rpunia229@gmail.com',
   },
   {
     icon: IconBrandGithub,
-    link: 'https://github.com/rahulpoonia29',
-    text: 'rahulpoonia29',
+    link: 'https://github.com/rpunia29',
+    text: 'rpunia29',
   },
   {
     icon: IconBrandLinkedin,
-    link: 'https://www.linkedin.com/in/rahulpoonia',
-    text: 'rahulpoonia',
+    link: 'https://www.linkedin.com/in/rpunia',
+    text: 'rpunia',
   },
   {
     icon: IconBrandInstagram,
-    link: 'https://www.instagram.com/rahulpoonia029',
-    text: 'rahulpoonia029',
+    link: 'https://www.instagram.com/rpunia229',
+    text: 'rpunia229',
   },
 ];

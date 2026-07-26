@@ -22,7 +22,9 @@ export default function Experience() {
                   {exp.company}
                 </h3>
 
-                <time className="text-muted-foreground text-xs tabular-nums">{exp.duration}</time>
+                {exp.duration && (
+                  <time className="text-muted-foreground text-xs tabular-nums">{exp.duration}</time>
+                )}
               </div>
 
               <p className="text-muted-foreground col-start-2 text-sm leading-relaxed text-pretty">

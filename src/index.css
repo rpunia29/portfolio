@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Doto:wght@100..900&display=swap');
 @import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -145,6 +145,11 @@
 
   .section-heading {
     @apply text-foreground text-xl font-semibold tracking-tight md:text-2xl;
+  }
+
+  .section-heading::before {
+    content: '#';
+    @apply text-muted-foreground mr-2 font-normal;
   }
 
   .container {

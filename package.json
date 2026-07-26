@@ -7,16 +7,25 @@
     "dev": "vite-react-ssg dev",
     "build": "tsc -b && vite-react-ssg build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cf:dev": "pnpm build && wrangler dev",
+    "cf:types": "wrangler types",
+    "deploy": "pnpm build && wrangler deploy"
   },
   "dependencies": {
     "@tabler/icons-react": "^3.44.0",
     "@tailwindcss/vite": "^4.3.0",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
+    "lucide-react": "^1.25.0",
+    "radix-ui": "^1.6.2",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "tailwind-merge": "^3.6.0",
-    "tailwindcss": "^4.3.0"
+    "tailwindcss": "^4.3.0",
+    "tw-animate-css": "^1.4.0",
+    "workers-og": "^0.0.27"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
@@ -35,12 +44,8 @@
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.59.4",
     "vite": "npm:rolldown-vite@7.1.12",
-    "vite-react-ssg": "^0.8.9"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@tailwindcss/oxide"
-    ]
+    "vite-react-ssg": "^0.8.9",
+    "wrangler": "^4.114.0"
   },
   "prettier": {
     "printWidth": 100,

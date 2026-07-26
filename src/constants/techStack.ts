@@ -1,143 +1,106 @@
-export const TECH_STACK: {
+export interface TechItem {
+  name: string;
+  /** Icon for light theme (also used in dark if no dark variant). */
+  icon?: string;
+  /** Icon variant for dark theme. */
+  iconDark?: string;
+  /** Monochrome icon that should be inverted in dark mode. */
+  invertInDark?: boolean;
+}
+
+export interface TechCategory {
   category: string;
-  clusters: {
-    label: string;
-    items: { iconUrl?: string; name: string }[];
-  }[];
-}[] = [
+  items: TechItem[];
+}
+
+const svgl = (name: string) => `https://svgl.app/library/${name}.svg`;
+const simpleIcon = (slug: string) => `https://cdn.simpleicons.org/${slug}`;
+
+export const TECH_STACK: TechCategory[] = [
   {
     category: 'Languages',
-    clusters: [
-      {
-        label: 'Languages',
-        items: [
-          {
-            name: 'TypeScript',
-            iconUrl: 'https://svgl.app/library/typescript.svg',
-          },
-          { name: 'Python', iconUrl: 'https://svgl.app/library/python.svg' },
-          { name: 'Go', iconUrl: 'https://svgl.app/library/golang.svg' },
-          { name: 'Rust', iconUrl: 'https://svgl.app/library/rust.svg' },
-          { name: 'Kotlin', iconUrl: 'https://svgl.app/library/kotlin.svg' },
-        ],
-      },
+    items: [
+      { name: 'TypeScript', icon: svgl('typescript') },
+      { name: 'Go', icon: svgl('golang') },
+      { name: 'Rust', icon: svgl('rust'), invertInDark: true },
+      { name: 'Python', icon: svgl('python') },
+      { name: 'Kotlin', icon: svgl('kotlin') },
     ],
   },
   {
-    category: 'Frontend Development',
-    clusters: [
-      {
-        label: 'Frameworks',
-        items: [
-          { name: 'React', iconUrl: 'https://svgl.app/library/react_light.svg' },
-          { name: 'Next.js', iconUrl: 'https://svgl.app/library/nextjs_icon_dark.svg' },
-          { name: 'React Native', iconUrl: 'https://svgl.app/library/react_light.svg' },
-          { name: 'Expo' },
-        ],
-      },
-      {
-        label: 'State & Styling',
-        items: [
-          {
-            name: 'Zustand',
-            // iconUrl: 'https://svgl.app/library/zustand.svg'
-          },
-          {
-            name: 'Tailwind CSS',
-            iconUrl: 'https://svgl.app/library/tailwindcss.svg',
-          },
-          { name: 'Shadcn UI', iconUrl: 'https://svgl.app/library/shadcn-ui.svg' },
-          {
-            name: 'Motion',
-            iconUrl: 'https://svgl.app/library/motion.svg',
-          },
-        ],
-      },
+    category: 'Frontend',
+    items: [
+      // Frameworks
+      { name: 'React', icon: svgl('react_light'), iconDark: svgl('react_dark') },
+      { name: 'Next.js', icon: svgl('nextjs_icon_dark'), invertInDark: true },
+      { name: 'TanStack Start' },
+      { name: 'React Native', icon: svgl('react_light'), iconDark: svgl('react_dark') },
+      { name: 'Expo', icon: svgl('expo'), invertInDark: true },
+      // Styling & UI
+      { name: 'Tailwind CSS', icon: svgl('tailwindcss') },
+      { name: 'shadcn/ui', icon: svgl('shadcn-ui'), iconDark: svgl('shadcn-ui_dark') },
+      { name: 'Motion', icon: svgl('motion'), iconDark: svgl('motion_dark') },
+      { name: 'Zustand' },
+      // Data viz & maps
+      { name: 'MapLibre' },
+      { name: 'deck.gl' },
+      { name: 'Recharts' },
+      // Libraries
+      { name: 'dnd-kit' },
+      { name: 'Shiki' },
     ],
   },
   {
-    category: 'Backend Development',
-    clusters: [
-      {
-        label: 'Frameworks',
-        items: [
-          { name: 'Express.js', iconUrl: 'https://svgl.app/library/expressjs.svg' },
-          { name: 'Hono', iconUrl: 'https://svgl.app/library/hono.svg' },
-        ],
-      },
-      {
-        label: 'Databases',
-        items: [
-          {
-            name: 'PostgreSQL',
-            iconUrl: 'https://svgl.app/library/postgresql.svg',
-          },
-          { name: 'SQLite', iconUrl: 'https://www.vectorlogo.zone/logos/sqlite/sqlite-icon.svg' },
-          { name: 'MongoDB', iconUrl: 'https://svgl.app/library/mongodb-icon-dark.svg' },
-        ],
-      },
-      {
-        label: 'ORM',
-        items: [
-          { name: 'Drizzle', iconUrl: 'https://svgl.app/library/drizzle-orm_light.svg' },
-          { name: 'Prisma', iconUrl: 'https://svgl.app/library/prisma.svg' },
-          {
-            name: 'Mongoose',
-            // iconUrl: 'https://svgl.app/library/mongoose.svg'
-          },
-        ],
-      },
+    category: 'Backend & Data',
+    items: [
+      // Runtimes & frameworks
+      { name: 'Node.js', icon: svgl('nodejs') },
+      { name: 'Express', icon: svgl('expressjs'), iconDark: svgl('expressjs_dark') },
+      { name: 'Hono', icon: svgl('hono') },
+      { name: 'chi' },
+      { name: 'FastAPI', icon: svgl('fastapi') },
+      // Databases
+      { name: 'PostgreSQL', icon: svgl('postgresql') },
+      { name: 'SQLite', icon: svgl('sqlite') },
+      { name: 'MongoDB', icon: svgl('mongodb-icon-light'), iconDark: svgl('mongodb-icon-dark') },
+      { name: 'Cloudflare D1', icon: simpleIcon('cloudflare') },
+      { name: 'Cloudflare KV', icon: simpleIcon('cloudflare') },
+      { name: 'Cloudflare R2', icon: simpleIcon('cloudflare') },
+      { name: 'Durable Objects', icon: simpleIcon('cloudflare') },
+      // ORMs
+      { name: 'Prisma', icon: svgl('prisma'), iconDark: svgl('prisma_dark') },
+      { name: 'Drizzle', icon: svgl('drizzle-orm_light'), iconDark: svgl('drizzle-orm_dark') },
+      { name: 'Mongoose', icon: simpleIcon('mongoose') },
+      // Formats & services
+      { name: 'Protobuf' }
     ],
   },
   {
-    category: 'LLM & AI',
-    clusters: [
-      {
-        label: 'AI Tools',
-        items: [
-          { name: 'LangChain' },
-          { name: 'Hugging Face', iconUrl: 'https://svgl.app/library/hugging_face.svg' },
-          { name: 'Gemini API' },
-          { name: 'Vector Search' },
-        ],
-      },
-      {
-        label: 'Data & Scraping',
-        items: [
-          { name: 'Web Scraping' },
-          { name: 'BeautifulSoup' },
-          { name: 'FastAPI', iconUrl: 'https://svgl.app/library/fastapi.svg' },
-          { name: 'Real-time Pipelines' },
-        ],
-      },
+    category: 'AI & Automation',
+    items: [
+      { name: 'LangChain', icon: simpleIcon('langchain'), iconDark: simpleIcon('langchain/white') },
+      { name: 'Gemini API', icon: svgl('gemini') },
+      { name: 'Hugging Face', icon: svgl('hugging_face') },
+      { name: 'AI Agents' },
+      { name: 'Vector Search' },
+      { name: 'Web Scraping' },
+      { name: 'Reverse Engineering' },
     ],
   },
   {
-    category: 'DevOps & Deployment',
-    clusters: [
-      {
-        label: 'Version Control',
-        items: [
-          { name: 'Git', iconUrl: 'https://svgl.app/library/git.svg' },
-          { name: 'GitHub', iconUrl: 'https://svgl.app/library/github_light.svg' },
-          {
-            name: 'GitHub Actions',
-            // iconUrl: 'https://svgl.app/library/github-actions.svg',
-          },
-        ],
-      },
-      {
-        label: 'Containerization',
-        items: [{ name: 'Docker', iconUrl: 'https://svgl.app/library/docker.svg' }],
-      },
-      {
-        label: 'Cloud & Hosting',
-        items: [
-          { name: 'Vercel', iconUrl: 'https://svgl.app/library/vercel.svg' },
-          { name: 'AWS', iconUrl: 'https://svgl.app/library/aws_light.svg' },
-          { name: 'Nginx', iconUrl: 'https://svgl.app/library/nginx.svg' },
-        ],
-      },
+    category: 'DevOps & Cloud',
+    items: [
+      // Version control & CI
+      { name: 'Git', icon: svgl('git') },
+      { name: 'GitHub', icon: svgl('github_light'), iconDark: svgl('github_dark') },
+      { name: 'GitHub Actions', icon: simpleIcon('githubactions') },
+      // Infra
+      { name: 'Docker', icon: svgl('docker') },
+      { name: 'Nginx', icon: svgl('nginx') },
+      // Hosting & cloud
+      { name: 'AWS', icon: svgl('aws_light'), iconDark: svgl('aws_dark') },
+      { name: 'Cloudflare Workers', icon: simpleIcon('cloudflareworkers') },
+      { name: 'Vercel', icon: svgl('vercel'), iconDark: svgl('vercel_dark') },
     ],
   },
 ];

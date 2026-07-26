@@ -3,101 +3,94 @@ import type { Project } from '@/types/project';
 export const PROJECTS: Project[] = [
   {
     id: 'trano',
-    name: 'Trano — Real-Time Train Tracking System',
+    name: 'Trano',
+    tagline: 'Live Train Tracking for Indian Railways',
     blurb:
-      'A full-stack web scraping and tracking system for real-time Indian railway data. Built with a Go poller for metrics collection, a React frontend with shadcn/ui, and a scalable backend architecture featuring status monitoring, metrics aggregation, and live data pipelines.',
-    stack: ['Go', 'React', 'TypeScript', 'Web Scraping', 'Real-Time Data', 'Metrics', 'shadcn/ui'],
-    tags: ['Full-Stack', 'Real-Time', 'Data Pipeline'],
+      "Tracks every train on the Indian Railways network in real time: live positions, timetables, station boards, coach layouts and punctuality history. A Go backend to pull the national feed, indexes positions on Uber's H3 grid, and streams Protobuf to a React map built on MapLibre and deck.gl.",
+    stack: ['Go', 'PostgreSQL', 'Protobuf', 'Uber H3', 'React', 'TanStack Start', 'MapLibre', 'deck.gl'],
     links: {
-      code: 'https://github.com/rahulpoonia29/trano',
-    },
-  },
-  {
-    id: 'butter',
-    name: 'Butter — AI-Powered Android Keyboard',
-    blurb:
-      'A Gboard-like Android keyboard with AI-driven reply suggestions. Built with React Native and Kotlin, it leverages the Accessibility API to read chat context and intelligently suggest responses. Features a custom toolbar for clipboard, screenshots, and media insertion.',
-    stack: ['React Native', 'Kotlin', 'Accessibility API', 'Expo', 'Android'],
-    tags: ['Mobile', 'AI Integration', 'Android'],
-    links: {
-      code: 'https://github.com/rahulpoonia29/butter',
+      live: 'https://trano.rpunia.com',
     },
   },
   {
     id: 'extractous',
-    name: 'Extractous Go — Document Extraction Library',
+    name: 'Extractous Go',
+    tagline: 'Document Extraction Library',
     blurb:
-      'A fast, multi-format document extraction library for Go. Built with Rust for maximum throughput, it includes a streaming API for large files and OCR support for scanned documents via Tesseract.',
-    stack: ['Go', 'Rust', 'CGO', 'FFI', 'Apache Tika', 'Tesseract', 'JNI', 'GitHub Actions'],
-    tags: ['Library', 'Systems', 'Cross-Platform'],
+      'A multi-format document extraction library for Go that binds a Rust core over CGO. It streams large files instead of loading them whole, parses formats through Apache Tika, and reads scanned documents with Tesseract OCR.',
+    stack: ['Go', 'Rust', 'CGO', 'Apache Tika', 'Tesseract', 'GitHub Actions'],
     links: {
-      code: 'https://github.com/rahulpoonia29/extractous-go',
+      code: 'https://github.com/rpunia29/extractous-go',
     },
   },
   {
     id: 'api-gateway',
-    name: 'API‑Gateway — Microservice Router',
+    name: 'API Gateway',
+    tagline: 'Microservice Router',
     blurb:
-      'A config-driven Go API gateway with radix-tree routing, hot-reload capabilities, and reverse proxy support. Built with a stateless architecture and features round-robin and least-connections load balancing.',
-    stack: ['Go', 'Radix Tree', 'Concurrency', 'HTTP', 'Cobra'],
-    tags: ['Infrastructure', 'Gateway'],
-    links: { code: 'https://github.com/rahulpoonia29/api-gateway' },
+      'A config-driven API gateway in Go with radix-tree routing, hot config reload, and reverse proxying. Stateless, with round-robin and least-connections load balancing, driven by a Cobra CLI.',
+    stack: ['Go', 'Cobra', 'Radix Tree', 'net/http', 'Reverse Proxy'],
+    links: {
+      code: 'https://github.com/rpunia29/api-gateway',
+    },
   },
   // {
   //   id: 'iitkgp-erp-login',
-  //   name: 'IITKGP-ERP-LOGIN — ERP Login Package',
+  //   name: 'IITKGP ERP Login',
+  //   tagline: 'ERP Automation Package',
   //   blurb:
-  //     'A Node.js package that seamlessly handles IIT Kharagpur ERP login workflows. Exposes CLI and programmatic APIs to automate OTP, security questions, and session management.',
-  //   stack: ['Node.js', 'TypeScript', 'Puppeteer', 'CLI'],
-  //   tags: ['Library', 'Utility', 'Automation'],
+  //     'A Node.js package that seamlessly handles IIT Kharagpur ERP login workflows. Exposes CLI and programmatic APIs to automate OTP, security questions, and session management. Published on npm.',
+  //   stack: ['Node.js', 'TypeScript', 'CLI', 'npm'],
   //   links: {
   //     live: 'https://www.npmjs.com/package/iitkgp-erp-login',
-  //     code: 'https://github.com/rahulpoonia29/IITKGP-ERP-LOGIN',
+  //     code: 'https://github.com/rpunia29/IITKGP-ERP-LOGIN',
   //   },
   // },
   {
     id: 'applic',
-    name: 'Applic — Job Application Tracker',
+    name: 'Applic',
+    tagline: 'Job Application Tracker',
     blurb:
-      'A full-stack platform for managing job applications. Features status tracking, interview scheduling, document management, optimistic UI updates, and role-based authentication.',
-    stack: ['Next.js', 'TypeScript', 'React', 'Tailwind', 'PostgreSQL', 'Prisma', 'NextAuth'],
-    tags: ['SaaS', 'Full-Stack'],
+      'A job-application tracker built on Next.js. Tracks status, schedules interviews, and stores documents through UploadThing, backed by Prisma and Postgres with NextAuth and optimistic UI updates.',
+    stack: ['Next.js', 'TypeScript', 'PostgreSQL', 'Prisma', 'NextAuth', 'UploadThing', 'Tailwind'],
     links: {
       live: 'https://applic.vercel.app',
-      code: 'https://github.com/rahulpoonia29/applic',
+      code: 'https://github.com/rpunia29/applic',
     },
   },
   {
     id: 'devmetrics',
-    name: 'Devmetrics — VS Code Extension',
+    name: 'Devmetrics',
+    tagline: 'VS Code Extension',
     blurb:
-      'A privacy-first coding analytics extension for VS Code. It tracks development metrics via Git diff analysis, persisting data locally using LokiJS. Includes per-project timelines and file focus distribution.',
-    stack: ['TypeScript', 'VS Code API', 'Git', 'LokiJS'],
-    tags: ['Extension', 'Analytics'],
-    links: { code: 'https://github.com/rahulpoonia29/devmetrics' },
+      'A VS Code extension that measures your coding from Git diffs and stores it locally in LokiJS, so nothing leaves your machine. Shows per-project timelines and which files you spend the most time in.',
+    stack: ['TypeScript', 'VS Code API', 'LokiJS', 'simple-git', 'esbuild'],
+    links: {
+      code: 'https://github.com/rpunia29/devmetrics',
+    },
   },
   {
     id: 'form-builder',
-    name: 'Form‑Builder — Visual Form Designer',
+    name: 'Form Builder',
+    tagline: 'Visual Form Designer',
     blurb:
-      'A drag-and-drop form builder that exports production-ready React Hook Form components with Zod validation. Includes syntax-highlighted code previews and real-time state management.',
-    stack: ['React', 'TypeScript', 'React Hook Form', 'Zod', 'Zustand'],
-    tags: ['Developer Tools', 'Code Generation'],
+      'A drag-and-drop form builder (dnd-kit) that exports React Hook Form components with Zod validation, plus a live, Shiki-highlighted code preview you can copy straight into a project.',
+    stack: ['React', 'TypeScript', 'dnd-kit', 'React Hook Form', 'Zod', 'Shiki'],
     links: {
       live: 'https://form-builder-bj3.pages.dev',
-      code: 'https://github.com/rahulpoonia29/form-builder',
+      code: 'https://github.com/rpunia29/form-builder',
     },
   },
   {
     id: 'shad-ui',
-    name: 'Shad‑UI Builder',
+    name: 'Shad-UI Builder',
+    tagline: 'Visual Component Builder',
     blurb:
-      'A visual UI component builder powered by Craft.js for composing shadcn/ui blocks. Provides live property controls and exports clean, reusable JSX to improve developer velocity.',
-    stack: ['React', 'TypeScript', 'Craft.js', 'Tailwind', 'ShadcnUI'],
-    tags: ['UI Builder', 'Design Tools'],
+      'A visual builder for shadcn/ui components, built on Craft.js with a live iframe preview. Compose blocks, edit their props, and export clean JSX.',
+    stack: ['Next.js', 'TypeScript', 'Craft.js', 'Tailwind', 'shadcn/ui'],
     links: {
-      code: 'https://github.com/rahulpoonia29/Shad-UI',
       live: 'https://shad-ui.vercel.app/editor',
+      code: 'https://github.com/rpunia29/Shad-UI',
     },
   },
 ];

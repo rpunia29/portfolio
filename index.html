@@ -3,13 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#FFFFFF" />
+    <meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0d0d10" media="(prefers-color-scheme: dark)" />
 
-    <title>Rahul Poonia — Full‑stack developer</title>
+    <!-- Restore theme before first paint to avoid a flash of the wrong theme -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <title>Rahul Punia | Full-Stack Developer (Go, TypeScript, Rust)</title>
     <meta
       name="description"
-      content="Rahul Poonia — Full‑stack developer and B.Tech student at IIT Kharagpur. Building products, tools and services with TypeScript, Go and Python."
+      content="I'm Rahul Punia, a full-stack developer and B.Tech student at IIT Kharagpur. I build backends, real-time data pipelines, and AI agents. I made Trano (live train tracking across India) and Extractous-Go. TypeScript, Go, Rust, Python."
     />
+    <meta
+      name="keywords"
+      content="Rahul Punia, full-stack developer, backend developer, Go developer, AI agents, TypeScript, React, Rust, Python, IIT Kharagpur, Trano, live train tracking, Extractous-Go, Cloudflare Workers, data pipelines"
+    />
+    <meta name="author" content="Rahul Punia" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href="https://rpunia.com/" />
 
     <!-- Favicons + PWA manifest -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -18,24 +38,100 @@
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="mobile-web-app-capable" content="yes" />
 
+    <!-- Fonts: load early via <link> + preconnect, display=optional to avoid a swap-in layout shift (CLS) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Doto:wght@100..900&display=optional"
+    />
+
     <!-- Open Graph / Social -->
-    <meta property="og:title" content="Rahul Poonia — Full‑stack developer" />
+    <meta property="og:title" content="Rahul Punia | Full-Stack Developer" />
     <meta
       property="og:description"
-      content="Building products and tools with React, TypeScript, Go and Python. Currently a B.Tech student at IIT Kharagpur."
+      content="I'm a full-stack developer and B.Tech student at IIT Kharagpur. I build backends, real-time data pipelines, and AI agents. I made Trano (live train tracking across India) and Extractous-Go."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://rahulpoonia.com/" />
-    <meta property="og:image" content="/android-chrome-512x512.png" />
+    <meta property="og:url" content="https://rpunia.com/" />
+    <meta property="og:site_name" content="Rahul Punia" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://rpunia.com/api/og" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Rahul Punia, full-stack developer" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Rahul Poonia — Full‑stack developer" />
+    <meta name="twitter:title" content="Rahul Punia | Full-Stack Developer" />
     <meta
       name="twitter:description"
-      content="Building products and tools with React, TypeScript, Go and Python. Currently a B.Tech student at IIT Kharagpur."
+      content="I'm a full-stack developer and B.Tech student at IIT Kharagpur. I build backends, real-time data pipelines, and AI agents. I made Trano and Extractous-Go."
     />
-    <meta name="twitter:image" content="/android-chrome-512x512.png" />
+    <meta name="twitter:image" content="https://rpunia.com/api/og" />
+    <meta name="twitter:image:alt" content="Rahul Punia, full-stack developer" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "ProfilePage",
+            "@id": "https://rpunia.com/#profilepage",
+            "url": "https://rpunia.com/",
+            "name": "Rahul Punia",
+            "dateModified": "2026-07-26",
+            "isPartOf": { "@id": "https://rpunia.com/#website" },
+            "inLanguage": "en",
+            "mainEntity": { "@id": "https://rpunia.com/#person" }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://rpunia.com/#person",
+            "name": "Rahul Punia",
+            "alternateName": "rpunia",
+            "url": "https://rpunia.com",
+            "image": "https://rpunia.com/api/og",
+            "email": "mailto:rpunia229@gmail.com",
+            "jobTitle": "Full-Stack Developer",
+            "description": "I'm a full-stack developer and B.Tech student at IIT Kharagpur. I build backends, real-time data pipelines, and AI agents.",
+            "alumniOf": {
+              "@type": "CollegeOrUniversity",
+              "name": "Indian Institute of Technology Kharagpur"
+            },
+            "knowsAbout": [
+              "TypeScript",
+              "Go",
+              "Rust",
+              "Python",
+              "React",
+              "Node.js",
+              "Backend Systems",
+              "Real-Time Data Pipelines",
+              "AI Agents",
+              "API Design",
+              "Reverse Engineering",
+              "Cloudflare Workers"
+            ],
+            "sameAs": [
+              "https://github.com/rpunia29",
+              "https://www.linkedin.com/in/rpunia",
+              "https://www.instagram.com/rpunia229"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://rpunia.com/#website",
+            "url": "https://rpunia.com",
+            "name": "Rahul Punia",
+            "description": "My portfolio. I build backends, real-time data pipelines, and AI agents.",
+            "publisher": { "@id": "https://rpunia.com/#person" },
+            "inLanguage": "en"
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

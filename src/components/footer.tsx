@@ -9,16 +9,9 @@ export default function Footer() {
       <div className="mx-auto w-full max-w-3xl px-4 py-6">
         <div className="flex flex-col-reverse items-center justify-between gap-4 md:flex-row">
           <div className="text-muted-foreground flex flex-wrap items-center justify-center gap-3 text-sm md:justify-start">
-            <span>// &copy; {year} Rahul Poonia</span>
+            <span>// &copy; {year} Rahul Punia</span>
             <span className="hidden md:inline-block">|</span>
             <span className="whitespace-nowrap">git status: clean</span>
-            <span className="hidden md:inline-block">|</span>
-            <span
-              className="hidden cursor-help text-xs opacity-50 transition-opacity hover:opacity-100 md:inline-block"
-              title="Press '?' or 'Ctrl+K' for commands"
-            >
-              Ctrl+K for commands
-            </span>
           </div>
 
           {email ? (

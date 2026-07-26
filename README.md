@@ -1,75 +1,37 @@
-# React + TypeScript + Vite
+# rpunia.com
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio: a single-page, statically generated site with a terminal-flavoured design.
 
-Currently, two official plugins are available:
+**Live:** [rpunia.com](https://rpunia.com)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Stack
 
-## React Compiler
+- React 19 + TypeScript, built with Vite (`vite-react-ssg` for static generation)
+- Tailwind CSS v4 + [shadcn/ui](https://ui.shadcn.com) (accordion, command menu, dialog)
+- Dynamic Open Graph image via `workers-og` (Satori + resvg-wasm), rendered in a Worker
+- Deployed on Cloudflare Workers (static assets + a Worker for `/api/og`)
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Development
 
-Note: This will impact Vite dev & build performances.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```sh
+pnpm install
+pnpm dev      # Vite dev server (UI only)
+pnpm build    # typecheck + static build → dist/
+pnpm lint     # eslint
+pnpm cf:dev   # build + run the full Worker locally (wrangler dev)
+pnpm deploy   # build + wrangler deploy to Cloudflare
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Deployment
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
+- `wrangler.jsonc` binds `dist/` as static assets (`ASSETS`) and routes everything else
+  to `worker/index.ts`.
+- `/api/og` is generated on the fly and cached at the edge via the Cache API
+  (`cache-control: immutable`, `s-maxage` 1 year); all other paths serve static assets,
+  falling back to `index.html`.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+## Notes
+
+- Content lives in `src/constants/` (projects, experience, tech stack, contacts).
+- Theme is restored before first paint by an inline script in `index.html`; toggling uses the View Transitions API.
+- Press `Ctrl+K` (or `?`) on the site for the command menu.
