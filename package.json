@@ -7,7 +7,8 @@
     "dev": "vite-react-ssg dev",
     "build": "tsc -b && vite-react-ssg build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "pnpm run build && wrangler dev",
+    "deploy": "pnpm run build && wrangler deploy"
   },
   "dependencies": {
     "@tabler/icons-react": "^3.44.0",
@@ -19,6 +20,7 @@
     "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.47.0",
     "@eslint/js": "^9.39.4",
     "@types/node": "^24.12.4",
     "@types/react": "^19.2.15",
@@ -35,7 +37,8 @@
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.59.4",
     "vite": "npm:rolldown-vite@7.1.12",
-    "vite-react-ssg": "^0.8.9"
+    "vite-react-ssg": "^0.8.9",
+    "wrangler": "^4.114.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
