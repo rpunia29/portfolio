@@ -81,7 +81,7 @@
             "@id": "https://rpunia.com/#profilepage",
             "url": "https://rpunia.com/",
             "name": "Rahul Punia",
-            "dateModified": "2026-07-26",
+            "dateModified": "2026-07-26T12:00:00+05:30",
             "isPartOf": { "@id": "https://rpunia.com/#website" },
             "inLanguage": "en",
             "mainEntity": { "@id": "https://rpunia.com/#person" }
@@ -95,6 +95,11 @@
             "image": "https://rpunia.com/api/og",
             "email": "mailto:rpunia229@gmail.com",
             "jobTitle": "Full-Stack Developer",
+            "hasOccupation": {
+              "@type": "Occupation",
+              "name": "Full-Stack Developer",
+              "occupationalCategory": "15-1252.00"
+            },
             "description": "I'm a full-stack developer and B.Tech student at IIT Kharagpur. I build backends, real-time data pipelines, and AI agents.",
             "alumniOf": {
               "@type": "CollegeOrUniversity",
@@ -128,6 +133,32 @@
             "description": "My portfolio. I build backends, real-time data pipelines, and AI agents.",
             "publisher": { "@id": "https://rpunia.com/#person" },
             "inLanguage": "en"
+          },
+          {
+            "@type": "WebApplication",
+            "name": "Trano",
+            "description": "Live train tracking for the Indian Railways network: real-time positions, timetables, station boards and punctuality history.",
+            "url": "https://trano.rpunia.com",
+            "applicationCategory": "TravelApplication",
+            "operatingSystem": "Web",
+            "programmingLanguage": ["Go", "TypeScript"],
+            "creator": { "@id": "https://rpunia.com/#person" }
+          },
+          {
+            "@type": "SoftwareSourceCode",
+            "name": "Extractous Go",
+            "description": "A multi-format document extraction library for Go that binds a Rust core over CGO, streams large files, and reads scanned documents with Tesseract OCR.",
+            "codeRepository": "https://github.com/rpunia29/extractous-go",
+            "programmingLanguage": ["Go", "Rust"],
+            "creator": { "@id": "https://rpunia.com/#person" }
+          },
+          {
+            "@type": "SoftwareSourceCode",
+            "name": "API Gateway",
+            "description": "A config-driven API gateway in Go with radix-tree routing, hot config reload, reverse proxying, and round-robin and least-connections load balancing.",
+            "codeRepository": "https://github.com/rpunia29/api-gateway",
+            "programmingLanguage": "Go",
+            "creator": { "@id": "https://rpunia.com/#person" }
           }
         ]
       }
