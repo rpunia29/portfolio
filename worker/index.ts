@@ -14,25 +14,33 @@ const STACK = ['TypeScript', 'Go', 'Rust', 'Python', 'React'];
 function ogMarkup(): string {
   const chips = STACK.map(
     (tech) =>
-      `<div style="display:flex;border:1px solid #2e2e35;padding:8px 18px;font-size:24px;color:#b3b3ba;">${tech}</div>`,
+      `<div style="display:flex;border:1px solid #2e2e35;border-radius:8px;padding:9px 20px;font-size:25px;color:#c8c8ce;">${tech}</div>`,
   ).join('');
 
+  const dot = (color: string) =>
+    `<div style="display:flex;width:18px;height:18px;border-radius:50%;background-color:${color};"></div>`;
+
   return `
-    <div style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:72px 80px;background-color:#0d0d10;background-image:radial-gradient(circle, #232329 1.5px, transparent 1.5px);background-size:32px 32px;color:#fafafa;font-family:'JetBrains Mono';">
-      <div style="display:flex;font-size:28px;color:#8a8a93;">$ whoami</div>
-      <div style="display:flex;flex-direction:column;gap:28px;">
-        <div style="display:flex;align-items:center;font-size:76px;font-weight:700;">
-          <span style="color:#8a8a93;margin-right:24px;">&gt;</span>
-          Rahul Punia
-          <span style="width:30px;height:68px;margin-left:20px;background-color:#fafafa;"></span>
+    <div style="width:100%;height:100%;display:flex;padding:44px;background-color:#0d0d10;background-image:radial-gradient(circle, #232329 1.5px, transparent 1.5px);background-size:32px 32px;font-family:'JetBrains Mono';">
+      <div style="width:100%;height:100%;display:flex;flex-direction:column;border:1px solid #26262c;border-radius:18px;background-color:#0f0f13;overflow:hidden;">
+        <div style="display:flex;align-items:center;gap:14px;padding:22px 32px;border-bottom:1px solid #26262c;background-color:#131318;">
+          ${dot('#ff5f57')}${dot('#febc2e')}${dot('#28c840')}
+          <div style="display:flex;margin-left:16px;font-size:24px;color:#8a8a93;">rpunia.com — zsh</div>
         </div>
-        <div style="display:flex;font-size:34px;color:#b3b3ba;">Full-stack developer at IIT Kharagpur</div>
-        <div style="display:flex;font-size:26px;color:#8a8a93;max-width:900px;">Building Trano, live tracking for every train in India.</div>
-        <div style="display:flex;gap:14px;margin-top:10px;">${chips}</div>
-      </div>
-      <div style="display:flex;justify-content:space-between;font-size:26px;color:#8a8a93;">
-        <span>rpunia.com</span>
-        <span>git status: clean</span>
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:22px;padding:40px 60px;color:#fafafa;">
+          <div style="display:flex;font-size:27px;color:#8a8a93;">$ whoami</div>
+          <div style="display:flex;align-items:center;height:100px;font-size:66px;font-weight:700;color:#fafafa;">❯ Rahul Punia</div>
+          <div style="display:flex;font-size:33px;color:#c8c8ce;">Full-stack developer at IIT Kharagpur</div>
+          <div style="display:flex;font-size:26px;color:#8a8a93;max-width:940px;">Building Trano, live tracking for every train in India.</div>
+          <div style="display:flex;gap:16px;margin-top:12px;">${chips}</div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:22px 32px;border-top:1px solid #26262c;background-color:#131318;font-size:25px;color:#8a8a93;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span style="color:#28c840;">❯</span>
+            <span>~/rpunia.com on main</span>
+          </div>
+          <div style="display:flex;">git status: clean</div>
+        </div>
       </div>
     </div>`;
 }
